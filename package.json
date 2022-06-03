@@ -1,0 +1,33 @@
+{
+  "name": "@dnrr_fd/util",
+  "version": "1.0.5",
+  "description": "Utility modules to use with JavaScript 4.x",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@arcgis/core": "^4.23.7",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "typescript": "^4.7.2"
+  },
+  "keywords": [
+    "module",
+    "utility"
+  ],
+  "author": "René Ténière",
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "@types/react": "^18.0.10",
+    "@types/react-dom": "^18.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dnrr-fd/util.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dnrr-fd/util/issues"
+  },
+  "homepage": "https://github.com/dnrr-fd/util#readme"
+}
