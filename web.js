@@ -84,7 +84,7 @@ export async function getClientCookie(name) {
         }
         if (c.indexOf(name) == 0) {
             let enc_string = c.substring(name.length + 1, c.length);
-            console.log(`_Map.getClientCookie() enc_string: ${enc_string}`);
+            // console.log(`_Map.getClientCookie() enc_string: ${enc_string}`);
             if (enc_string === "null") {
                 return null;
             }
@@ -129,7 +129,7 @@ export function getElementPosition(elem) {
     };
 }
 export function documentFocusTabEventSetup(document_node) {
-    console.log("documentFocusTabEventSetup()");
+    // console.log("documentFocusTabEventSetup()");
     document_node.addEventListener('keydown', function (e) {
         let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
         if (!isTabPressed) {
@@ -176,7 +176,7 @@ export function isInViewport(element) {
         rect.height > 0);
 }
 export async function getFocusableElements(document_node, calling_element_to_include = null, ignore_offpage_elements = true, focusable_elements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])') {
-    console.log("getFocusableElements()");
+    // console.log("getFocusableElements()");
     var fc = document_node.querySelectorAll(focusable_elements);
     focusableContent.length = 0;
     if (calling_element_to_include) {
@@ -188,11 +188,11 @@ export async function getFocusableElements(document_node, calling_element_to_inc
             var result = isInViewport(element);
             var style = window.getComputedStyle(element);
             if (result === true && style.display != 'none' && style.visibility != 'hidden') {
-                console.log(`Element (${element.id}) is within viewport.`);
+                // console.log(`Element (${element.id}) is within viewport.`);
                 focusableContent.push(element);
             }
             else {
-                console.log(`Element (${element.id}) is NOT within viewport.`);
+                // console.log(`Element (${element.id}) is NOT within viewport.`);
             }
         });
     }
