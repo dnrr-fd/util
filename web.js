@@ -202,4 +202,28 @@ export async function getFocusableElements(document_node, calling_element_to_inc
         });
     }
 }
+export async function returnConfig(filePath, defaultFilePath) {
+    return new Promise(resolve => {
+        // If the config file is not null, try and load it.
+        var finalFilePath = filePath ? filePath : defaultFilePath;
+        console.log(`Config file path: ${finalFilePath}`);
+        if (finalFilePath) {
+            fetch(finalFilePath)
+                .then(response => {
+                if (response.status >= 200 && response.status <= 299) {
+                    resolve(response.json());
+                }
+                else {
+                    resolve(null);
+                }
+            })
+                .catch(error => {
+                resolve(null);
+            });
+        }
+        else {
+            resolve(null);
+        }
+    });
+}
 //# sourceMappingURL=web.js.map

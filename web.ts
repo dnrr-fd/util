@@ -212,3 +212,28 @@ export async function getFocusableElements(document_node: HTMLElement, calling_e
       });
   }
 }
+
+export async function returnConfig (filePath: string|null, defaultFilePath: string|null){
+  return new Promise(resolve => {
+      // If the config file is not null, try and load it.
+      var finalFilePath = filePath? filePath: defaultFilePath;
+      console.log(`Config file path: ${finalFilePath}`);
+
+      if (finalFilePath) {
+          fetch(finalFilePath)
+          .then(response => {
+              if (response.status >= 200 && response.status <= 299) {
+                  resolve(response.json());
+              } else {
+                  resolve(null);
+              }
+          })
+          .catch(error => {
+              resolve(null);
+          });
+      } else {
+          resolve(null);
+      }
+
+  });
+}
