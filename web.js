@@ -206,7 +206,7 @@ export async function returnConfig(filePath, defaultFilePath) {
     return new Promise(resolve => {
         // If the config file is not null, try and load it.
         var finalFilePath = filePath ? filePath : defaultFilePath;
-        console.log(`Config file path: ${finalFilePath}`);
+        // console.log(`Config file path: ${finalFilePath}`);
         if (finalFilePath) {
             fetch(finalFilePath)
                 .then(response => {
