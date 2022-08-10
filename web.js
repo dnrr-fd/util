@@ -175,7 +175,7 @@ export function isInViewport(element) {
         rect.width > 0 &&
         rect.height > 0);
 }
-export async function getFocusableElements(document_node, calling_element_to_include = null, ignore_offpage_elements = true, focusable_elements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])') {
+export async function getFocusableElements(document_node, calling_element_to_include = null, ignore_offpage_elements = true, focusable_elements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]):not(.esri-attribution__sources)') {
     // console.log("getFocusableElements()");
     var fc = document_node.querySelectorAll(focusable_elements);
     focusableContent.length = 0;
