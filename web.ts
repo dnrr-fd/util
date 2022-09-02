@@ -9,9 +9,17 @@ export function getWidgetTheme(themeID: string, _theme=null as string|null) {
   esriTheme = null;
   let darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
 
-  if (document.getElementById(themeID) && _theme) {
+  let themeID_node = document.getElementById(themeID) as HTMLLinkElement;
+
+  if (themeID_node && _theme) {
     esriTheme = _theme;
-  } else {
+  } else if (themeID_node) {
+    let ss = themeID_node.href
+    let _theme = ss.split('/assets/esri/themes/')[1].split('/')[0]
+    if (_theme.toLocaleLowerCase() === 'light' || _theme.toLocaleLowerCase() === 'dark') {
+      esriTheme = _theme;
+    }
+} else {
     for (let i = 0; i < document.styleSheets.length; i++) {
       let ss = document.styleSheets[i].href;
       if (ss && ss.split('/assets/esri/themes/').length == 2) {
@@ -36,7 +44,7 @@ export function getWidgetTheme(themeID: string, _theme=null as string|null) {
     } else {
       theme = 'light';
     }
-    setStyleSheet(`https://js.arcgis.com/4.20/@arcgis/core/assets/esri/themes/${theme}/main.css`, themeID); // ESRI Themed CSS
+    setStyleSheet(`https://js.arcgis.com/4.24/@arcgis/core/assets/esri/themes/${theme}/main.css`, themeID); // ESRI Themed CSS
   }
   return theme;
 }
@@ -52,10 +60,10 @@ export function setStyleSheet(href: string, id=null as string|null): void {
       link_node.id = id;
     }
   }
-  link_node.href = href;
   link_node.type = "text/css";
   link_node.rel = "stylesheet";
   document.head.appendChild(link_node);
+  link_node.href = href;
 }
 
 export function ariaDisable(element: HTMLElement, css_disable_class_list: Array<string>, disable=true as boolean) {

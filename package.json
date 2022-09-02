@@ -1,6 +1,6 @@
 {
   "name": "@dnrr_fd/util",
-  "version": "1.0.11",
+  "version": "1.0.14",
   "description": "Utility modules to use with JavaScript 4.x",
   "main": "web.js",
   "scripts": {
@@ -13,12 +13,8 @@
   "author": "René Ténière",
   "license": "SEE LICENSE IN LICENSE",
   "devDependencies": {
-    "@types/react": "^18.0.17",
-    "@types/react-dom": "^18.0.6",
-    "@arcgis/core": "^4.24.7",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "^4.7.4"
+    "@types/react": "^18.0.18",
+    "@types/react-dom": "^18.0.6"
   },
   "repository": {
     "type": "git",
@@ -29,13 +25,17 @@
   },
   "homepage": "https://github.com/dnrr-fd/util#readme",
   "dependencies": {
+    "@arcgis/core": "^4.24.7",
+    "typescript": "^4.8.2",
+    "react-dom": "^18.2.0",
+    "react": "^18.2.0",
     "color-convert": "^2.0.1",
     "color-name": "^1.1.4",
     "csstype": "^3.1.0",
     "cssfilter": "^0.0.10",
     "color-string": "^1.9.1",
     "color": "^4.2.3",
-    "focus-trap": "^6.9.4",
+    "focus-trap": "^7.0.0",
     "commander": "^9.4.0",
     "form-request-submit-polyfill": "^2.0.0",
     "js-tokens": "^8.0.0",
@@ -44,10 +44,10 @@
     "lodash.isplainobject": "^4.0.6",
     "loose-envify": "^1.4.0",
     "scheduler": "^0.23.0",
-    "luxon": "^3.0.1",
+    "luxon": "^3.0.3",
     "simple-swizzle": "^0.2.2",
     "sortablejs": "^1.15.0",
-    "tabbable": "^5.3.3",
-    "xss": "^1.0.13"
+    "tabbable": "^6.0.0",
+    "xss": "^1.0.14"
   }
 }
