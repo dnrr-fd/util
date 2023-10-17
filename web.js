@@ -1,27 +1,27 @@
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import React from 'react';
-var focusableContent = new Array();
+const focusableContent = new Array();
 export function getWidgetTheme(themeID, _theme = null) {
     let theme;
     let esriTheme;
     esriTheme = null;
-    let darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-    let themeID_node = document.getElementById(themeID);
+    const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+    const themeID_node = document.getElementById(themeID);
     if (themeID_node && _theme) {
         esriTheme = _theme;
     }
     else if (themeID_node) {
-        let ss = themeID_node.href;
-        let _theme = ss.split('/assets/esri/themes/')[1].split('/')[0];
+        const ss = themeID_node.href;
+        const _theme = ss.split('/assets/esri/themes/')[1].split('/')[0];
         if (_theme.toLocaleLowerCase() === 'light' || _theme.toLocaleLowerCase() === 'dark') {
             esriTheme = _theme;
         }
     }
     else {
         for (let i = 0; i < document.styleSheets.length; i++) {
-            let ss = document.styleSheets[i].href;
+            const ss = document.styleSheets[i].href;
             if (ss && ss.split('/assets/esri/themes/').length == 2) {
-                let _theme = ss.split('/assets/esri/themes/')[1].split('/')[0];
+                const _theme = ss.split('/assets/esri/themes/')[1].split('/')[0];
                 if (_theme.toLocaleLowerCase() === 'light' || _theme.toLocaleLowerCase() === 'dark') {
                     esriTheme = _theme;
                 }
@@ -49,9 +49,9 @@ export function getWidgetTheme(themeID, _theme = null) {
     return theme;
 }
 export function setStyleSheet(href, id = null) {
-    var link_node = document.createElement("link");
+    const link_node = document.createElement("link");
     if (id) {
-        var ss_node = document.getElementById(id);
+        const ss_node = document.getElementById(id);
         if (ss_node) {
             ss_node.href = href;
             return;
@@ -67,7 +67,7 @@ export function setStyleSheet(href, id = null) {
 }
 export function ariaDisable(element, css_disable_class_list, disable = true) {
     element.setAttribute('aria-disabled', disable.toString());
-    for (let css_disable_class of css_disable_class_list) {
+    for (const css_disable_class of css_disable_class_list) {
         if (disable === true && !element.classList.contains(css_disable_class)) {
             element.classList.add(css_disable_class);
         }
@@ -78,20 +78,22 @@ export function ariaDisable(element, css_disable_class_list, disable = true) {
 }
 export function createReactDiv(parent_node, div_id, classNameList = [""]) {
     // Create the div structure under the parent widgetbar div.
-    var classes = classNameList.join(' ');
-    var _div = React.createElement('div', { id: div_id, className: classes });
-    ReactDOM.render(_div, parent_node);
+    const classes = classNameList.join(' ');
+    const _div = React.createElement('div', { id: div_id, className: classes });
+    // ReactDOM.render(_div, parent_node); /deprecated
+    const root = ReactDOM.createRoot(parent_node);
+    root.render(_div);
 }
 export async function getClientCookie(name) {
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
     for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
         }
         if (c.indexOf(name) == 0) {
-            let enc_string = c.substring(name.length + 1, c.length);
+            const enc_string = c.substring(name.length + 1, c.length);
             // console.log(`_Map.getClientCookie() enc_string: ${enc_string}`);
             if (enc_string === "null") {
                 return null;
@@ -104,16 +106,16 @@ export async function getClientCookie(name) {
     return null;
 }
 export function getElementPosition(elem) {
-    var xMin = 0;
-    var yMin = 0;
-    var elemInit = false;
-    var elemWidth = 0;
-    var elemHeight = 0;
+    let xMin = 0;
+    let yMin = 0;
+    let elemInit = false;
+    let elemWidth = 0;
+    let elemHeight = 0;
     while (elem) {
         if (elem.tagName == "BODY") {
             // deal with browser quirks with body/window/document and page scroll
-            var xScroll = elem.scrollLeft || document.documentElement.scrollLeft;
-            var yScroll = elem.scrollTop || document.documentElement.scrollTop;
+            const xScroll = elem.scrollLeft || document.documentElement.scrollLeft;
+            const yScroll = elem.scrollTop || document.documentElement.scrollTop;
             xMin += (elem.offsetLeft - xScroll + elem.clientLeft);
             yMin += (elem.offsetTop - yScroll + elem.clientTop);
         }
@@ -139,12 +141,12 @@ export function getElementPosition(elem) {
 export function documentFocusTabEventSetup(document_node) {
     // console.log("documentFocusTabEventSetup()");
     document_node.addEventListener('keydown', function (e) {
-        let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
+        const isTabPressed = e.key === 'Tab' || e.keyCode === 9;
         if (!isTabPressed) {
             return;
         }
-        var firstFocusableElement = focusableContent[0];
-        var lastFocusableElement = focusableContent[focusableContent.length - 1];
+        const firstFocusableElement = focusableContent[0];
+        const lastFocusableElement = focusableContent[focusableContent.length - 1];
         if (e.shiftKey) {
             // if shift key pressed for shift + tab combination
             if (document.activeElement === firstFocusableElement) {
@@ -153,7 +155,7 @@ export function documentFocusTabEventSetup(document_node) {
                 e.preventDefault();
             }
             else {
-                let idx = Array.prototype.indexOf.call(focusableContent, document.activeElement) - 1;
+                const idx = Array.prototype.indexOf.call(focusableContent, document.activeElement) - 1;
                 focusableContent[idx].focus();
                 e.preventDefault();
             }
@@ -167,7 +169,7 @@ export function documentFocusTabEventSetup(document_node) {
                 e.preventDefault();
             }
             else {
-                let idx = Array.prototype.indexOf.call(focusableContent, document.activeElement) + 1;
+                const idx = Array.prototype.indexOf.call(focusableContent, document.activeElement) + 1;
                 focusableContent[idx].focus();
                 e.preventDefault();
             }
@@ -185,7 +187,7 @@ export function isInViewport(element) {
 }
 export async function getFocusableElements(document_node, calling_element_to_include = null, ignore_offpage_elements = true, focusable_elements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]):not(.esri-attribution__sources)') {
     // console.log("getFocusableElements()");
-    var fc = document_node.querySelectorAll(focusable_elements);
+    const fc = document_node.querySelectorAll(focusable_elements);
     focusableContent.length = 0;
     if (calling_element_to_include) {
         focusableContent.push(calling_element_to_include);
@@ -193,8 +195,8 @@ export async function getFocusableElements(document_node, calling_element_to_inc
     // Remove the elements from focusable Content
     if (ignore_offpage_elements === true) {
         Array.prototype.forEach.call(fc, function (element) {
-            var result = isInViewport(element);
-            var style = window.getComputedStyle(element);
+            const result = isInViewport(element);
+            const style = window.getComputedStyle(element);
             if (result === true && style.display != 'none' && style.visibility != 'hidden') {
                 // console.log(`Element (${element.id}) is within viewport.`);
                 focusableContent.push(element);
@@ -213,7 +215,7 @@ export async function getFocusableElements(document_node, calling_element_to_inc
 export async function returnConfig(filePath, defaultFilePath) {
     return new Promise(resolve => {
         // If the config file is not null, try and load it.
-        var finalFilePath = filePath ? filePath : defaultFilePath;
+        const finalFilePath = filePath ? filePath : defaultFilePath;
         // console.log(`Config file path: ${finalFilePath}`);
         if (finalFilePath) {
             fetch(finalFilePath)

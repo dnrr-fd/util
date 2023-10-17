@@ -1,6 +1,6 @@
 {
   "name": "@dnrr_fd/util",
-  "version": "1.0.17",
+  "version": "1.1.0",
   "description": "Utility modules to use with JavaScript 4.x",
   "main": "web.js",
   "scripts": {
@@ -13,17 +13,33 @@
   ],
   "author": "René Ténière",
   "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dnrr-fd/util.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dnrr-fd/util/issues"
+  },
+  "homepage": "https://github.com/dnrr-fd/util#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "devDependencies": {
     "@arcgis/core": "^4.27.6",
     "@types/react": "^18.2.28",
     "@types/react-dom": "^18.2.13",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
     "color": "^4.2.3",
     "color-convert": "^2.0.1",
     "color-name": "^2.0.0",
     "color-string": "^1.9.1",
-    "commander": "^11.0.0",
+    "commander": "^11.1.0",
     "cssfilter": "^0.0.10",
     "csstype": "^3.1.2",
+    "eslint": "^8.51.0",
+    "eslint-plugin-react": "^7.33.2",
     "focus-trap": "^7.5.4",
     "form-request-submit-polyfill": "^2.0.0",
     "is-arrayish": "^0.3.2",
@@ -37,19 +53,8 @@
     "sortablejs": "^1.15.0",
     "tabbable": "^6.2.0",
     "ts-node": "^10.9.1",
+    "tslib": "^2.6.2",
     "typescript": "^5.2.2",
     "xss": "^1.0.14"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dnrr-fd/util.git"
-  },
-  "bugs": {
-    "url": "https://github.com/dnrr-fd/util/issues"
-  },
-  "homepage": "https://github.com/dnrr-fd/util#readme",
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
   }
 }
