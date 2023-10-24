@@ -1,6 +1,6 @@
 {
   "name": "@dnrr_fd/util",
-  "version": "1.1.1",
+  "version": "1.1.3",
   "description": "Utility modules to use with JavaScript 4.x",
   "main": "web.js",
   "scripts": {
@@ -26,12 +26,12 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@arcgis/core": "4.26.5",
-    "@types/react": "18.2.30",
+    "@arcgis/core": "4.28.0",
+    "@types/react": "18.2.31",
     "@types/react-dom": "18.2.14",
-    "@typescript-eslint/eslint-plugin": "6.8.0",
-    "@typescript-eslint/parser": "6.8.0",
-    "eslint": "8.51.0",
+    "@typescript-eslint/eslint-plugin": "6.9.0",
+    "@typescript-eslint/parser": "6.9.0",
+    "eslint": "8.52.0",
     "eslint-plugin-react": "7.33.2",
     "tslib": "2.6.2",
     "typescript": "5.2.2"
