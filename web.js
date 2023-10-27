@@ -44,7 +44,7 @@ export function getWidgetTheme(themeID, _theme = null) {
         else {
             theme = 'light';
         }
-        setStyleSheet(`https://js.arcgis.com/4.24/@arcgis/core/assets/esri/themes/${theme}/main.css`, themeID); // ESRI Themed CSS
+        setStyleSheet(`https://js.arcgis.com/4.28/@arcgis/core/assets/esri/themes/${theme}/main.css`, themeID); // ESRI Themed CSS
     }
     return theme;
 }
