@@ -29,6 +29,6 @@
         "no-useless-escape": "off",
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/no-this-alias": "off",
-        "react/no-unknown-property": ["error", { "ignore": ["bind", "afterCreate", "class"] }]
+        "react/no-unknown-property": ["error", { "ignore": ["bind", "afterCreate", "class", "onclick"] }]
     }
 }
