@@ -1,0 +1,38 @@
+{
+  "name": "@dnrr_fd/util",
+  "version": "2.1.1",
+  "description": "Utility modules to use with JavaScript 4.x",
+  "main": "web.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "module",
+    "utility"
+  ],
+  "author": "René Ténière",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dnrr-fd/util.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dnrr-fd/util/issues"
+  },
+  "homepage": "https://github.com/dnrr-fd/util#readme",
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@arcgis/core": "4.28.6",
+    "@types/react": "18.2.34",
+    "@types/react-dom": "18.2.14",
+    "@typescript-eslint/eslint-plugin": "6.9.1",
+    "@typescript-eslint/parser": "6.9.1",
+    "eslint": "8.52.0",
+    "eslint-plugin-react": "7.33.2",
+    "tslib": "2.6.2",
+    "typescript": "5.2.2"
+  }
+}
