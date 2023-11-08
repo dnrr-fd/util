@@ -1,7 +1,7 @@
 // @ts-check
 const focusableContent = new Array<HTMLElement>();
 
-export function getTheme(themeID: string, theme=null as string|null) {
+export function getTheme(themeID: string, theme=null as string|null, targetAPIversion='4.28' as string) {
   let _theme: 'light'|'dark';
   let esriTheme: string | null;
   esriTheme = null;
@@ -17,7 +17,7 @@ export function getTheme(themeID: string, theme=null as string|null) {
     if (_theme.toLocaleLowerCase() === 'light' || _theme.toLocaleLowerCase() === 'dark') {
       esriTheme = _theme;
     }
-} else {
+  } else {
     for (let i = 0; i < document.styleSheets.length; i++) {
       const ss = document.styleSheets[i].href;
       if (ss && ss.split('/assets/esri/themes/').length == 2) {
@@ -42,7 +42,7 @@ export function getTheme(themeID: string, theme=null as string|null) {
     } else {
       _theme = 'light';
     }
-    setStyleSheet(`https://js.arcgis.com/4.28/@arcgis/core/assets/esri/themes/${_theme}/main.css`, themeID); // ESRI Themed CSS
+    setStyleSheet(`https://js.arcgis.com/${targetAPIversion}/@arcgis/core/assets/esri/themes/${_theme}/main.css`, themeID); // ESRI Themed CSS
   }
   return _theme;
 }

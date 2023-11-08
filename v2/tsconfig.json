@@ -1,20 +1,21 @@
 {
   "compilerOptions": {
+    "downlevelIteration": true,
     "esModuleInterop": true,
-    "strictPropertyInitialization": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "jsx": "react",
-    "jsxFactory": "tsx",
-    "lib": ["ES2020", "DOM"],
-    "module": "ES2020",
+    "lib": ["ES2016", "DOM"],
+    "module": "ES2015",
     "moduleResolution": "Node",
     "noImplicitAny": true,
     "preserveConstEnums": true,
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ES2020"
+    "strictPropertyInitialization": true,
+    "target": "ES2016",
+    "useDefineForClassFields": false
   },
   "include": ["./"]
 }
