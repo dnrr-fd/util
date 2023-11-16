@@ -1,13 +1,15 @@
 // @ts-check
 const focusableContent = new Array<HTMLElement>();
 
-export function getTheme(themeID: string, theme=null as string|null, targetAPIversion='4.28' as string) {
+export function getTheme(themeID: string, theme=null as string|null, targetAPIversion=4.28 as number) {
   let _theme: 'light'|'dark';
   let esriTheme: string | null;
   esriTheme = null;
   const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
 
   const themeID_node = document.getElementById(themeID) as HTMLLinkElement;
+  const body_element = document.querySelector('body') as HTMLBodyElement;
+
 
   if (themeID_node && theme) {
     esriTheme = theme;
@@ -44,6 +46,9 @@ export function getTheme(themeID: string, theme=null as string|null, targetAPIve
     }
     setStyleSheet(`https://js.arcgis.com/${targetAPIversion}/@arcgis/core/assets/esri/themes/${_theme}/main.css`, themeID); // ESRI Themed CSS
   }
+
+  body_element.className = _theme=='dark'? 'calcite-mode-dark': 'calcite-mode-light';
+  
   return _theme;
 }
 
@@ -263,7 +268,7 @@ export async function loadConfig(defaultFilePath=null as null|string, configValu
           }
       }
 
-      // console.log(`Config file path: ${finalFilePath}`);
+      console.log(`Config file path: ${finalFilePath}`);
 
       fetch(finalFilePath)
       .then(response => {

@@ -33,6 +33,7 @@ export function loadLocale(locale: string, configlocales: Array<string>) {
     }
 
     intl.setLocale(locale)
+    document.documentElement.lang = locale;
 
     return locale;
 }
