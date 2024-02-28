@@ -15,15 +15,15 @@ export function getTheme(themeID: string, theme=null as string|null, targetAPIve
     esriTheme = theme;
   } else if (themeID_node) {
     const ss = themeID_node.href
-    const _theme = ss.split('/assets/esri/themes/')[1].split('/')[0]
+    const _theme = ss.split('/esri/themes/')[1].split('/')[0]
     if (_theme.toLocaleLowerCase() === 'light' || _theme.toLocaleLowerCase() === 'dark') {
       esriTheme = _theme;
     }
   } else {
     for (let i = 0; i < document.styleSheets.length; i++) {
       const ss = document.styleSheets[i].href;
-      if (ss && ss.split('/assets/esri/themes/').length == 2) {
-        const _theme = ss.split('/assets/esri/themes/')[1].split('/')[0]
+      if (ss && ss.split('/esri/themes/').length == 2) {
+        const _theme = ss.split('/esri/themes/')[1].split('/')[0]
         if (_theme.toLocaleLowerCase() === 'light' || _theme.toLocaleLowerCase() === 'dark') {
           esriTheme = _theme;
         }
@@ -44,7 +44,7 @@ export function getTheme(themeID: string, theme=null as string|null, targetAPIve
     } else {
       _theme = 'light';
     }
-    setStyleSheet(`https://js.arcgis.com/${targetAPIversion}/@arcgis/core/assets/esri/themes/${_theme}/main.css`, themeID); // ESRI Themed CSS
+    setStyleSheet(`https://js.arcgis.com/${targetAPIversion}/esri/themes/${_theme}/main.css`, themeID); // ESRI Themed CSS
   }
 
   body_element.className = _theme=='dark'? 'calcite-mode-dark': 'calcite-mode-light';
