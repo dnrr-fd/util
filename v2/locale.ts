@@ -1,46 +1,51 @@
 // @ts-check
-import * as intl from "@arcgis/core/intl";
-import { property, subclass } from '@arcgis/core/core/accessorSupport/decorators';
-import Accessor from '@arcgis/core/core/Accessor';
-import { getQueryStringValue } from "./web";
+export class LocaleParam {
+    isParam?: boolean;
+    locale?: string;
 
-@subclass('LocaleParam')
-export class LocaleParam extends Accessor {
-    //----------------------------------
-    //  Properties
-    //----------------------------------
-    @property()
-    isParam!: boolean
-
-    @property()
-    locale!: string
+    constructor(
+        isParam?:boolean,
+        locale?:string) {
+            this.isParam = isParam;
+            this.locale = locale;
+    }
 }
 
-export function  getNormalizedLocale() {
-    return intl.getLocale().toLowerCase().slice(0, 2);
+export function getNormalizedLocale() {
+    // Dynamically load modules
+    const result = import('@arcgis/core/intl').then(intl => {
+        return intl.getLocale().toLowerCase().slice(0, 2);
+    });
+    return result;
 }
 
-export function loadLocale(locale: string, configlocales: Array<string>) {
+export async function loadLocale(locale: string, configlocales: Array<string>) {
     // Check if the new locale is in the list of locales in the config list. If so try and open the js file in i18n/
     // otherwise just return the default default_i18n
-    const lang = getNormalizedLocale();
+    const lang = await getNormalizedLocale();
     const configlocalesUC = configlocales.map(locale => locale.toUpperCase());
 
     if (!configlocalesUC.includes(locale.toUpperCase())) {
-        const message = `Locale (${locale}) is not supported in this application. Please check index_config.json. Using default (${lang}).`;
+        const message = `Locale (${locale}) is not configured in this application. Please check index_config.json. Using default (${lang}).`;
         locale = lang;
         window.alert(message);
     }
 
-    intl.setLocale(locale)
+    // Dynamically load modules
+    const result = import('@arcgis/core/intl').then(intl => {
+        intl.setLocale(locale)
+    });
     document.documentElement.lang = locale;
 
     return locale;
 }
 
 export async function getLocaleParam() {
-    return new Promise(resolve => {
-        const lang = intl.getLocale().toLowerCase().slice(0, 2);
+    return new Promise(async resolve => {
+        // Dynamically load modules
+        const { getQueryStringValue } = await import('./web');
+
+        const lang = await getNormalizedLocale();
         const localeparam = getQueryStringValue("locale");
 
         const lp = new LocaleParam();
@@ -49,7 +54,7 @@ export async function getLocaleParam() {
 
         if (localeparam != null) {
             isParam = true;
-            if (localeparam.toUpperCase() != intl.getLocale().toUpperCase().slice(0, 2) && localeparam.toUpperCase() != "EN") {
+            if (localeparam.toUpperCase() != lang && localeparam.toUpperCase() != "EN") {
                 locale = localeparam;
             }
         }

@@ -293,9 +293,14 @@ export function getQueryStringValue(parameter: string) {
   let getParameter;
   let i;
   for (i = 0; i < queryString.length; i++) {
-      getParameter = queryString[i].split('=');
+      getParameter = decodeURIComponent(queryString[i]).split('=');
       if (getParameter[0] === parameter) {
-          return getParameter[1] === undefined ? null : decodeURIComponent(getParameter[1]);
+        if (getParameter[1]) {
+          return getParameter[1];
+        } else {
+          return null;
+        }
+          // return getParameter[1] === undefined ? null : decodeURIComponent(getParameter[1]);
       }
   }
   return null;
